@@ -11,7 +11,7 @@ body{
     flex-direction: column;
     width: 800px;
     height: 800px;
-    border: 1px solid #ccc;
+    border: 1px solid #1f1e1e;
     box-shadow: 0 0 10px rgba(0,0,0,0.1);
 }
 .grid-row{
@@ -20,7 +20,7 @@ body{
 }
 .grid-cell{
     flex: 1;
-    border: 1px solid #eee;
+    border: 1px solid #e04343;
     box-sizing: border-box;
     background-color: #fff;
     display: flex;
@@ -30,5 +30,5 @@ body{
     color: #555;
 }
 .grid-cell:hover{
-    background-color: #e0e0e0;
+    background-color: #25d80d;
 }
