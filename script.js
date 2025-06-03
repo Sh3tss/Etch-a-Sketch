@@ -1,13 +1,5 @@
 function makeGrids(size){
     let container = document.querySelector(".container");
-    
-    console.log(container);
-
-    if (!container) {
-        console.error("Erro: O elemento .container não foi encontrado no HTML.");
-        return; // Sai da função se o container não for encontrado
-    }
-
     container.innerHTML = '';
     for (let i = 0; i < size; i++){
         let gridRow  = document.createElement("div");
@@ -26,4 +18,16 @@ function makeGrids(size){
 document.addEventListener('DOMContentLoaded', () => {
     console.log("DOM totalmente carregado. chamando makegrids(16)");
     makeGrids(16);
+    const resizeBtn = document.getElementById('resizeGridBtn');
+    if (resizeBtn){
+        resizeBtn.addEventListener('click', () => {
+            let newSize = prompt("Write here the number of blocks: ");
+            newSize = parseInt(newSize);
+            if (isNaN(newSize)|| newSize <= 0 || newSize > 100){
+                alert("Invalid number of blocks! PLease choose from 1 to 100.");
+                return;
+            }
+            makeGrids(newSize);
+        });
+    }
 });
