@@ -1,5 +1,5 @@
 function makeGrids(size){
-    let screen = document.querySelector(".sketch-screen");
+    let screen = document.querySelector(".container");
     for (let i = 0; i < size; i++){
         let column  = document.createElement("div");
         column.classList.add("column");
