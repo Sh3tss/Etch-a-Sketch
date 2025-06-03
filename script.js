@@ -15,6 +15,9 @@ function makeGrids(size){
         for (let j = 0; j < size; j++){
             let gridCell = document.createElement("div");
             gridCell.classList.add("grid-cell");
+            gridCell.addEventListener('mouseover' , (event) => {
+                event.target.style.backgroundColor = 'black';
+            });
             gridRow.appendChild(gridCell);
         }
         container.appendChild(gridRow);
