@@ -1,3 +1,14 @@
+function getRandomInt (min,max){            //function to get a random number 
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+function getRandomRGBColor(){             // function to get a random color
+    const r = getRandomInt(0, 255);
+    const g = getRandomInt(0, 255);
+    const b = getRandomInt(0, 255);
+    return `rgb(${r}, ${g}, ${b})`;         //here give me the string of which rgb get choose 
+}
 function makeGrids(size){
     let container = document.querySelector(".container");
     container.innerHTML = '';
@@ -8,7 +19,7 @@ function makeGrids(size){
             let gridCell = document.createElement("div");
             gridCell.classList.add("grid-cell");
             gridCell.addEventListener('mouseover' , (event) => {
-                event.target.style.backgroundColor = 'black';
+                event.target.style.backgroundColor = getRandomRGBColor;
             });
             gridRow.appendChild(gridCell);
         }
@@ -16,7 +27,6 @@ function makeGrids(size){
     }
 }
 document.addEventListener('DOMContentLoaded', () => {
-    console.log("DOM totalmente carregado. chamando makegrids(16)");
     makeGrids(16);
     const resizeBtn = document.getElementById('resizeGridBtn');
     if (resizeBtn){
