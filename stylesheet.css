@@ -19,7 +19,6 @@ body{
     height: 960px;
     background-color: cyan;
     border: 1px solid black;
-    flex-shrink: 0;
 }
 .grid-row{
     display: flex;
@@ -28,7 +27,7 @@ body{
 }
 .grid-cell{
     background-color: lightgray;
-    border: 1px solid #ccc;
+    border: 1px solid red;
     flex: 1;
     height: 100%;
 }
