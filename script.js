@@ -9,6 +9,22 @@ function rgbChange(){             // function to get a random color
     const b = randomInt(0, 255);
     return `rgb(${r}, ${g}, ${b})`;         //here give me the string of which rgb get choose 
 }
+function darkrgb (rgbString, percentage){
+    const parts = rgbString.match(/\d+/g).map(Number);
+    let r = parts[0];
+    let g = parts[1];
+    let b = parts[2];
+    const darkPercent = percentage / 100;
+    // to get a darken effect each time
+    r = Math.round(r * (1 - darkPercent));
+    g = Math.round(g * (1 - darkPercent));
+    b = Math.round(b * (1 - darkPercent));
+    //to make sure they don`t get negative
+    r = Math.max(0, r);
+    g = Math.max(0, g);
+    b = Math.max(0, b);
+    return `rgb(${r}, ${g}, ${b})`;
+}
 function makeGrids(size){
     let container = document.querySelector(".container");
     container.innerHTML = '';
@@ -18,8 +34,24 @@ function makeGrids(size){
         for (let j = 0; j < size; j++){
             let gridCell = document.createElement("div");
             gridCell.classList.add("grid-cell");
+            gridCell.dataset.hoverCount = 0;        //control how much do you pass the mousehover
             gridCell.addEventListener('mouseover' , (event) => {
-                event.target.style.backgroundColor = rgbChange();
+                const cell = event.target;
+                let hoverCount = parseInt(cell.dataset.hoverCount);
+                if (hoverCount < 10){
+                    hoverCount++;
+                    cell.dataset.hoverCount = hoverCount;
+                    if (hoverCount === 1){          //start to change the color to get a dark effect
+                        cell.style.backgroundColor = rgbChange();
+                    }else {
+                        const currentColor = cell.style.backgroundColor;
+                        if (currentColor.startWith('rgb')){
+                            cell.style.backgroundColor = darkrgb(currentColor, 10);
+                        }else{
+                            cell.style.backgroundColor = 'black';         // if something happen and the color didn`t came as a rgb color just put a black default
+                        }
+                    }
+                }
             });
             gridRow.appendChild(gridCell);
         }
